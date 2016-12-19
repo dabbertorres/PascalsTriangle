@@ -18,30 +18,30 @@ namespace dbr
     template<>
     struct PascalsTriangle<1, 1>
     {
-		static int value()
-		{
-			return 1;
-		}
-	};
+        static int value()
+        {
+            return 1;
+        }
+    };
 
-	// recursive definition
-	template<int Degree, int Index>
-	struct PascalsTriangle<Degree, Index, std::true_type>
-	{
-		static int value()
-		{
-			constexpr int PrevDegree = Degree - 1;
-			return PascalsTriangle<PrevDegree, Index - 1>::value() + PascalsTriangle<PrevDegree, Index>::value();
-		}
-	};
+    // recursive definition
+    template<int Degree, int Index>
+    struct PascalsTriangle<Degree, Index, std::true_type>
+    {
+        static int value()
+        {
+            constexpr int PrevDegree = Degree - 1;
+            return PascalsTriangle<PrevDegree, Index - 1>::value() + PascalsTriangle<PrevDegree, Index>::value();
+        }
+    };
 
-	// outside the triangle
-	template<int Degree, int Index>
-	struct PascalsTriangle<Degree, Index, std::false_type>
-	{
-		static int value()
-		{
-			return 0;
-		}
-	};
+    // outside the triangle
+    template<int Degree, int Index>
+    struct PascalsTriangle<Degree, Index, std::false_type>
+    {
+        static int value()
+        {
+            return 0;
+        }
+    };
 }
